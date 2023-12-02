@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':product_id', $product_id, PDO::PARAM_INT);
             $stmt->bindParam(':product_name', $product_name, PDO::PARAM_STR);
             $stmt->bindParam(':product_description', $product_description, PDO::PARAM_STR);
-            $stmt->bindParam(':price', $price, PDO::PARAM_INT);
+            $stmt->bindParam(':price', $price, PDO::PARAM_STR);
             $stmt->execute();
 
             echo "Product updated successfully";

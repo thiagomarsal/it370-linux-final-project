@@ -5,14 +5,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_name = $_POST['product_name'];
     $product_description = $_POST['product_description'];
     $price = $_POST['price'];
+    $category = $_POST['category'];
 
-    $sql = "INSERT INTO Products (product_name, product_description, price) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO Products (product_name, product_description, price, category_id) VALUES (?, ?, ?, ?)";
 
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $product_name, PDO::PARAM_STR);
         $stmt->bindParam(2, $product_description, PDO::PARAM_STR);
-        $stmt->bindParam(3, $price, PDO::PARAM_STR);
+	$stmt->bindParam(3, $price, PDO::PARAM_STR);
+	$stmt->bindParam(4, $category, PDO::PARAM_STR);
         $stmt->execute();
 
         echo "New product added successfully";

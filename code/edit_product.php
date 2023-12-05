@@ -14,7 +14,10 @@
 
     if(isset($_GET['id'])) {
         $product_id = $_GET['id'];
-        $sql = "SELECT * FROM Products WHERE product_id = :product_id";
+        $sql = "SELECT p.*, c.category_id FROM Products p
+                LEFT JOIN Categories c ON p.category_id = c.category_id
+                WHERE product_id = :product_id";
+
         $stmt = $pdo->prepare($sql);
         
         try {
@@ -37,6 +40,19 @@
         
         <label for="price">Price:</label>
         <input type="text" name="price" value="<?php echo $row['price']; ?>"><br><br>
+
+        <label for="category_id">Category:</label>
+        <select name="category_id">
+            <?php
+                $categoriesSql = "SELECT * FROM Categories";
+                $categoriesResult = $pdo->query($categoriesSql);
+
+                while ($category = $categoriesResult->fetch(PDO::FETCH_ASSOC)) {
+                    $selected = ($category['category_id'] == $row['category_id']) ? 'selected' : '';
+                    echo "<option value='{$category['category_id']}' $selected>{$category['category_name']}</option>";
+                }
+            ?>
+        </select><br><br>
         
         <input type="submit" value="Update Product">
     </form>

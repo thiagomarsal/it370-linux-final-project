@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Customers</h1>
-    <a href="add_category.php">Add Customer</a>
+    <a href="add_customer.php">Add Customer</a>
     <table>
         <tr>
             <th>ID</th>
@@ -30,7 +30,7 @@
                 echo "<td>".$row['last_name']."</td>";
                 echo "<td>".$row['email']."</td>";
                 echo "<td>".$row['phone']."</td>";
-                echo "<td><a href='edit_category.php?id=".$row['category_id']."'>Edit</a> | <a href='delete_category.php?id=".$row['category_id']."'>Delete</a></td>";
+                echo "<td><a href='edit_customer.php?id=".$row['customer_id']."'>Edit</a> | <a href='delete_customer.php?id=".$row['customer_id']."'>Delete</a></td>";
                 echo "</tr>";
             }
         } else {
